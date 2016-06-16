@@ -47,7 +47,9 @@ static uint8_t  _hdlc_payload[HDLC_MRU];    // payload buffer allocation
 /* Send a byte via uart_putchar() function */
 static void hdlc_tx_byte(uint8_t byte)
 {
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET );
   uart_putchar((char)byte);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET );
 }
 
 /* Check and send a byte with hdlc ESC sequence via UART */
@@ -83,6 +85,7 @@ void hdlc_init(void)
 /* This function should be called when new character is received via UART */
 void hdlc_process_rx_byte(uint8_t rx_byte)
 {
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET );
 	switch (hdlc.state)
 	{
 		case HDLC_SOF_WAIT:   /// Waiting for SOF flag
@@ -133,9 +136,8 @@ void hdlc_process_rx_byte(uint8_t rx_byte)
 				hdlc_init();  // drop frame and start over
 			}
 		break;
-			
-			
 	}
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET );
 }
 
 /** Process received frame buf with length len

@@ -11,7 +11,7 @@
 
 enum
 {
-	CMD_Temperature = 0x40, /// Temperature readout from hdc1080
+	CMD_Temperature = 0x30, /// Temperature readout from hdc1080
 	CMD_Humidity,     			/// Humidity readout from hdc1080
 	CMD_Bat,								/// battery readout from hdc1080
 	CMD_Pressure,						/// Air pressure in hPa or mbar abs

@@ -5,7 +5,7 @@
 
 
 /** OWN HDLC Address */
-#define SETUP_OWNADDRESS	0x31
+#define SETUP_OWNADDRESS	0x30
 #define UNIQUE_ID					0x0d000011
 #define SETUP_BAUDRATE		9600
 
